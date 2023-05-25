@@ -6,7 +6,7 @@ import {Fragment} from "react";
 import GameCardContainer from "./GameCardContainer.tsx";
 
 const GameGrid = () => {
-    const {games, error, isLoading} = useGames();
+    const {data: games, error, isLoading} = useGames();
     const skeletons = Array(6).fill(null);
     return (
         <Fragment>
