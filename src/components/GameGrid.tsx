@@ -3,6 +3,7 @@ import useGames from "../hooks/useGames.tsx";
 import GameCard from "./GameCard.tsx";
 import GameCardSkeleton from "./GameCardSkeleton.tsx";
 import {Fragment} from "react";
+import GameCardContainer from "./GameCardContainer.tsx";
 
 const GameGrid = () => {
     const {games, error, isLoading} = useGames();
@@ -10,19 +11,23 @@ const GameGrid = () => {
     return (
         <Fragment>
             {error && <Text>{error}</Text>}
-                <SimpleGrid padding={10} columns={{
-                    sm: 1,
-                    md: 2,
-                    lg: 3,
-                    xl: 4
-                }} spacing={10}>
-                    {isLoading && skeletons.map((_, index) => (
+            <SimpleGrid padding={10} columns={{
+                sm: 1,
+                md: 2,
+                lg: 3,
+                xl: 4
+            }} spacing={10}>
+                {isLoading && skeletons.map((_, index) => (
+                    <GameCardContainer>
                         <GameCardSkeleton key={index}/>
-                    ))}
-                    {!isLoading && games.map(game => (
+                    </GameCardContainer>
+                ))}
+                {!isLoading && games.map(game => (
+                    <GameCardContainer>
                         <GameCard game={game} key={game.id}/>
-                    ))}
-                </SimpleGrid>
+                    </GameCardContainer>
+                ))}
+            </SimpleGrid>
         </Fragment>
     );
 };
