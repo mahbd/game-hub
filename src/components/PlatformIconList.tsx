@@ -1,4 +1,4 @@
-import {FaWindows, FaPlaystation, FaXbox, FaApple, FaLinux, FaAndroid} from "react-icons/fa";
+import {FaAndroid, FaApple, FaLinux, FaPlaystation, FaWindows, FaXbox} from "react-icons/fa";
 import {MdPhoneIphone} from "react-icons/md";
 import {SiNintendo} from "react-icons/si";
 import {BsGlobe} from "react-icons/bs";
@@ -25,7 +25,7 @@ const PlatformIconList = ({platforms}: Props) => {
     return (
         <HStack marginY={1}>
             {platforms.map((platform) =>
-                <Icon as={iconMap[platform.slug]} key={platform.id} boxSize={6} color={"gray.500"} />
+                <Icon as={iconMap[platform.slug]} key={platform.id} boxSize={4} color={"gray.500"}/>
             )}
         </HStack>
     );
