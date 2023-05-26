@@ -6,19 +6,17 @@ import {Fragment} from "react";
 import GameCardContainer from "./GameCardContainer.tsx";
 import {Genre} from "../hooks/useGenres.ts";
 import PlatformSelector from "./PlatformSelector.tsx";
+import {GameQuery} from "../App";
 
 interface Props {
-    selectedGenre: Genre | null;
-    selectedPlatform: Platform | null;
-    onSelectPlatform: (platform: Platform | null) => void;
+    gameQuery: GameQuery;
 }
 
-const GameGrid = ({selectedGenre, selectedPlatform, onSelectPlatform}: Props) => {
-    const {data: games, error, isLoading} = useGames(selectedGenre, selectedPlatform);
+const GameGrid = ({gameQuery}: Props) => {
+    const {data: games, error, isLoading} = useGames(gameQuery);
     const skeletons = Array(20).fill(null);
     return (
         <Fragment>
-            <PlatformSelector onSelectPlatform={onSelectPlatform} selectedPlatform={selectedPlatform}/>
             {error && <Text>{error}</Text>}
             <SimpleGrid padding={10} columns={{
                 sm: 1,
