@@ -5,6 +5,7 @@ import GameCardSkeleton from "./GameCardSkeleton.tsx";
 import {Fragment} from "react";
 import GameCardContainer from "./GameCardContainer.tsx";
 import {Genre} from "../hooks/useGenres.ts";
+import PlatformSelector from "./PlatformSelector.tsx";
 
 interface Props {
     selectedGenre: Genre | null;
@@ -15,6 +16,7 @@ const GameGrid = ({selectedGenre}: Props) => {
     const skeletons = Array(20).fill(null);
     return (
         <Fragment>
+            <PlatformSelector/>
             {error && <Text>{error}</Text>}
             <SimpleGrid padding={10} columns={{
                 sm: 1,
