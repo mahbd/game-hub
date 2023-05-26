@@ -4,10 +4,15 @@ import GameCard from "./GameCard.tsx";
 import GameCardSkeleton from "./GameCardSkeleton.tsx";
 import {Fragment} from "react";
 import GameCardContainer from "./GameCardContainer.tsx";
+import {Genre} from "../hooks/useGenres.ts";
 
-const GameGrid = () => {
-    const {data: games, error, isLoading} = useGames();
-    const skeletons = Array(6).fill(null);
+interface Props {
+    selectedGenre: Genre | null;
+}
+
+const GameGrid = ({selectedGenre}: Props) => {
+    const {data: games, error, isLoading} = useGames(selectedGenre);
+    const skeletons = Array(20).fill(null);
     return (
         <Fragment>
             {error && <Text>{error}</Text>}
@@ -18,13 +23,13 @@ const GameGrid = () => {
                 xl: 4
             }} spacing={3}>
                 {isLoading && skeletons.map((_, index) => (
-                    <GameCardContainer>
-                        <GameCardSkeleton key={index}/>
+                    <GameCardContainer key={index}>
+                        <GameCardSkeleton/>
                     </GameCardContainer>
                 ))}
                 {!isLoading && games.map(game => (
-                    <GameCardContainer>
-                        <GameCard game={game} key={game.id}/>
+                    <GameCardContainer key={game.id}>
+                        <GameCard game={game}/>
                     </GameCardContainer>
                 ))}
             </SimpleGrid>
